@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/CYs_PanotourPro_Plugin/static/css/main.fa95619e.css",
-    "main.js": "/CYs_PanotourPro_Plugin/static/js/main.572982bd.js",
+    "main.js": "/CYs_PanotourPro_Plugin/static/js/main.276be05e.js",
     "static/media/tutorial2.png": "/CYs_PanotourPro_Plugin/static/media/tutorial2.efe9050b00259f6d4371.png",
     "static/media/tutorial3.png": "/CYs_PanotourPro_Plugin/static/media/tutorial3.2039a417a7dc9e08ecdb.png",
     "static/media/tutorial8.png": "/CYs_PanotourPro_Plugin/static/media/tutorial8.0cd920cfd063d8d590b4.png",
@@ -21,10 +21,10 @@
     "static/media/ripple.png": "/CYs_PanotourPro_Plugin/static/media/ripple.bf1d31fe7dd8b1de3092.png",
     "index.html": "/CYs_PanotourPro_Plugin/index.html",
     "main.fa95619e.css.map": "/CYs_PanotourPro_Plugin/static/css/main.fa95619e.css.map",
-    "main.572982bd.js.map": "/CYs_PanotourPro_Plugin/static/js/main.572982bd.js.map"
+    "main.276be05e.js.map": "/CYs_PanotourPro_Plugin/static/js/main.276be05e.js.map"
   },
   "entrypoints": [
     "static/css/main.fa95619e.css",
-    "static/js/main.572982bd.js"
+    "static/js/main.276be05e.js"
   ]
 }
