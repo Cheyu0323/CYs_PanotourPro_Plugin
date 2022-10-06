@@ -46,7 +46,7 @@ const Index = () => {
                         fontWeight: 700,
                         letterSpacing: 1.2
                     }}
-                    onClick={() => n("/tutorial")}
+                    onClick={() => n("/CYs_PanotourPro_Plugin/tutorial")}
                 >
                     HOW TO USE
                 </Button>

@@ -20,9 +20,14 @@ const Card: React.FC<CardType> = ({ Icon, children }) => {
                 cursor: "pointer",
                 "&:hover": {
                     backgroundColor: "secondary.dark",
-                }
+                },
             }}
-            onClick={() => n("/plugins/" + children.replace(/\s*/g,""))}
+            onClick={() =>
+                n(
+                    "/CYs_PanotourPro_Plugin/plugins/" +
+                        children.replace(/\s*/g, "")
+                )
+            }
         >
             <Stack
                 width="80%"
@@ -59,7 +64,11 @@ const Card: React.FC<CardType> = ({ Icon, children }) => {
                     color="common.white"
                     variant="body1"
                     width="50%"
-                    style={{ display: "inline-block", whiteSpace: "pre-line", wordBreak: "break-word" }}
+                    style={{
+                        display: "inline-block",
+                        whiteSpace: "pre-line",
+                        wordBreak: "break-word",
+                    }}
                     textAlign="center"
                 >
                     {children}

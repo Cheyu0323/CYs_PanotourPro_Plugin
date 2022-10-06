@@ -137,7 +137,12 @@ const Plugin: React.FC = () => {
                                     backgroundColor: "secondary.light",
                                 },
                             }}
-                            onClick={() => n("/plugins/" + pluginPreData.link)}
+                            onClick={() =>
+                                n(
+                                    "/CYs_PanotourPro_Plugin/plugins/" +
+                                        pluginPreData.link
+                                )
+                            }
                         >
                             <Typography
                                 color="common.white"
@@ -173,7 +178,12 @@ const Plugin: React.FC = () => {
                                     backgroundColor: "secondary.light",
                                 },
                             }}
-                            onClick={() => n("/plugins/" + pluginNextData.link)}
+                            onClick={() =>
+                                n(
+                                    "/CYs_PanotourPro_Plugin/plugins/" +
+                                        pluginNextData.link
+                                )
+                            }
                         >
                             <Typography
                                 color="common.white"

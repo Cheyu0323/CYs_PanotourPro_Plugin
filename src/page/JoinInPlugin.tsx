@@ -116,7 +116,9 @@ const JoinInPlugin = () => {
                                 backgroundColor: "secondary.light",
                             },
                         }}
-                        onClick={() => n("/tutorial/page1")}
+                        onClick={() =>
+                            n("/CYs_PanotourPro_Plugin/tutorial/page1")
+                        }
                     >
                         <Typography
                             color="common.white"

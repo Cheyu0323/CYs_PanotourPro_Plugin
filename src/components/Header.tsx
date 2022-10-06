@@ -4,11 +4,11 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Header = () => {
-    const n = useNavigate()
-    const [menuClick, setMenuClick] = useState<boolean>(false)
+    const n = useNavigate();
+    const [menuClick, setMenuClick] = useState<boolean>(false);
     const handleMenuClick = () => {
-        setMenuClick(!menuClick)
-    }
+        setMenuClick(!menuClick);
+    };
     return (
         <Stack
             direction="row"
@@ -23,7 +23,7 @@ const Header = () => {
                 letterSpacing={2}
                 color="common.white"
                 sx={{ cursor: "pointer" }}
-                onClick={() => n("/")}
+                onClick={() => n("/CYs_PanotourPro_Plugin/")}
             >
                 PANOTOURPLUGIN
             </Typography>
@@ -39,9 +39,11 @@ const Header = () => {
                     left: "0",
                     transition: ".3s",
                     maxHeight: menuClick ? "100px" : "0",
-                    padding:  menuClick ? "6px 24px" :  { md: "0px", xs: "0 24px" },
+                    padding: menuClick
+                        ? "6px 24px"
+                        : { md: "0px", xs: "0 24px" },
                     backgroundColor: "secondary.main",
-                    boxSizing: "border-box"
+                    boxSizing: "border-box",
                 }}
             >
                 <Typography
@@ -50,7 +52,10 @@ const Header = () => {
                     color="grey.300"
                     letterSpacing={1}
                     fontWeight={100}
-                    onClick={() => {n("/plugins"); setMenuClick(false)}}
+                    onClick={() => {
+                        n("/CYs_PanotourPro_Plugin/plugins");
+                        setMenuClick(false);
+                    }}
                     sx={{
                         transition: ".3s",
                         cursor: "pointer",
@@ -68,7 +73,10 @@ const Header = () => {
                     color="grey.300"
                     letterSpacing={1}
                     fontWeight={100}
-                    onClick={() => {n("/tutorial"); setMenuClick(false)}}
+                    onClick={() => {
+                        n("/CYs_PanotourPro_Plugin/tutorial");
+                        setMenuClick(false);
+                    }}
                     sx={{
                         transition: ".3s",
                         cursor: "pointer",

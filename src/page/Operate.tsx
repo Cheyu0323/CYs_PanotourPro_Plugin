@@ -248,7 +248,9 @@ const Operate = () => {
                                 backgroundColor: "secondary.light",
                             },
                         }}
-                        onClick={() => n("/tutorial/page2")}
+                        onClick={() =>
+                            n("/CYs_PanotourPro_Plugin/tutorial/page2")
+                        }
                     >
                         <Typography
                             color="common.white"

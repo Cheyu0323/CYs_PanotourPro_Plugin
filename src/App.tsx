@@ -26,23 +26,23 @@ const routerConfig: RouteObject[] = [
         element: <Index />,
     },
     {
-        path: "/plugins",
+        path: "/CYs_PanotourPro_Plugin/plugins",
         element: <Introduction type="Plugins" />,
     },
     {
-        path: "/tutorial",
+        path: "/CYs_PanotourPro_Plugin/tutorial",
         element: <Introduction type="Tutorial" />,
     },
     {
-        path: "/tutorial/page1",
+        path: "/CYs_PanotourPro_Plugin/tutorial/page1",
         element: <Operate />,
     },
     {
-        path: "/tutorial/page2",
+        path: "/CYs_PanotourPro_Plugin/tutorial/page2",
         element: <JoinInPlugin />,
     },
     {
-        path: "/plugins/:title",
+        path: "/CYs_PanotourPro_Plugin/plugins/:title",
         element: <Plugin />,
     },
 ];
