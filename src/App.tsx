@@ -22,7 +22,7 @@ const theme = createTheme({
 
 const routerConfig: RouteObject[] = [
     {
-        path: "/",
+        path: "/CYs_PanotourPro_Plugin/",
         element: <Index />,
     },
     {
