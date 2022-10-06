@@ -1,30 +1,30 @@
 {
   "files": {
-    "main.css": "/CYs_PanotourPro_Plugin/static/css/main.fa95619e.css",
-    "main.js": "/CYs_PanotourPro_Plugin/static/js/main.572982bd.js",
-    "static/media/tutorial2.png": "/CYs_PanotourPro_Plugin/static/media/tutorial2.efe9050b00259f6d4371.png",
-    "static/media/tutorial3.png": "/CYs_PanotourPro_Plugin/static/media/tutorial3.2039a417a7dc9e08ecdb.png",
-    "static/media/tutorial8.png": "/CYs_PanotourPro_Plugin/static/media/tutorial8.0cd920cfd063d8d590b4.png",
-    "static/media/tutorial5.png": "/CYs_PanotourPro_Plugin/static/media/tutorial5.2ae79fbf0c62ce6d2496.png",
-    "static/media/tutorial7.png": "/CYs_PanotourPro_Plugin/static/media/tutorial7.ba4f29587fbe240d132b.png",
-    "static/media/tutorial4.png": "/CYs_PanotourPro_Plugin/static/media/tutorial4.6b79c1fc5493b9a8b782.png",
-    "static/media/tutorial6.png": "/CYs_PanotourPro_Plugin/static/media/tutorial6.912f6f06ada57a08e219.png",
-    "static/media/WebsiteURLData.png": "/CYs_PanotourPro_Plugin/static/media/WebsiteURLData.d1065b7978a1e1eec36a.png",
-    "static/media/Button.png": "/CYs_PanotourPro_Plugin/static/media/Button.0404c1a869dd598cd00b.png",
-    "static/media/Intro.png": "/CYs_PanotourPro_Plugin/static/media/Intro.27545ece0502ac31dff7.png",
-    "static/media/SwithPictureSpotImageData.png": "/CYs_PanotourPro_Plugin/static/media/SwithPictureSpotImageData.c73e0f7111e016229cbc.png",
-    "static/media/tutorial9.png": "/CYs_PanotourPro_Plugin/static/media/tutorial9.0745a03ddc9ecc279278.png",
-    "static/media/PointStyleData.png": "/CYs_PanotourPro_Plugin/static/media/PointStyleData.c5d869114dc37ea4921d.png",
-    "static/media/ActionData.png": "/CYs_PanotourPro_Plugin/static/media/ActionData.d7a606e3c41860c2453b.png",
-    "static/media/GoogleAnalytics.png": "/CYs_PanotourPro_Plugin/static/media/GoogleAnalytics.9ffab8ada54072960907.png",
-    "static/media/tutorial1.png": "/CYs_PanotourPro_Plugin/static/media/tutorial1.104113238f35ea453e8e.png",
-    "static/media/ripple.png": "/CYs_PanotourPro_Plugin/static/media/ripple.bf1d31fe7dd8b1de3092.png",
-    "index.html": "/CYs_PanotourPro_Plugin/index.html",
-    "main.fa95619e.css.map": "/CYs_PanotourPro_Plugin/static/css/main.fa95619e.css.map",
-    "main.572982bd.js.map": "/CYs_PanotourPro_Plugin/static/js/main.572982bd.js.map"
+    "main.css": "/static/css/main.fa95619e.css",
+    "main.js": "/static/js/main.4422e17c.js",
+    "static/media/tutorial2.png": "/static/media/tutorial2.efe9050b00259f6d4371.png",
+    "static/media/tutorial3.png": "/static/media/tutorial3.2039a417a7dc9e08ecdb.png",
+    "static/media/tutorial8.png": "/static/media/tutorial8.0cd920cfd063d8d590b4.png",
+    "static/media/tutorial5.png": "/static/media/tutorial5.2ae79fbf0c62ce6d2496.png",
+    "static/media/tutorial7.png": "/static/media/tutorial7.ba4f29587fbe240d132b.png",
+    "static/media/tutorial4.png": "/static/media/tutorial4.6b79c1fc5493b9a8b782.png",
+    "static/media/tutorial6.png": "/static/media/tutorial6.912f6f06ada57a08e219.png",
+    "static/media/WebsiteURLData.png": "/static/media/WebsiteURLData.d1065b7978a1e1eec36a.png",
+    "static/media/Button.png": "/static/media/Button.0404c1a869dd598cd00b.png",
+    "static/media/Intro.png": "/static/media/Intro.27545ece0502ac31dff7.png",
+    "static/media/SwithPictureSpotImageData.png": "/static/media/SwithPictureSpotImageData.c73e0f7111e016229cbc.png",
+    "static/media/tutorial9.png": "/static/media/tutorial9.0745a03ddc9ecc279278.png",
+    "static/media/PointStyleData.png": "/static/media/PointStyleData.c5d869114dc37ea4921d.png",
+    "static/media/ActionData.png": "/static/media/ActionData.d7a606e3c41860c2453b.png",
+    "static/media/GoogleAnalytics.png": "/static/media/GoogleAnalytics.9ffab8ada54072960907.png",
+    "static/media/tutorial1.png": "/static/media/tutorial1.104113238f35ea453e8e.png",
+    "static/media/ripple.png": "/static/media/ripple.bf1d31fe7dd8b1de3092.png",
+    "index.html": "/index.html",
+    "main.fa95619e.css.map": "/static/css/main.fa95619e.css.map",
+    "main.4422e17c.js.map": "/static/js/main.4422e17c.js.map"
   },
   "entrypoints": [
     "static/css/main.fa95619e.css",
-    "static/js/main.572982bd.js"
+    "static/js/main.4422e17c.js"
   ]
 }
