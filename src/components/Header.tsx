@@ -18,6 +18,7 @@ const Header = () => {
             position="sticky"
             top="0"
             sx={{
+                zIndex: "900",
                 backgroundColor: "secondary.main",
             }}
         >

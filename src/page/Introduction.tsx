@@ -17,7 +17,7 @@ const Cards = () => {
                     item
                     md={4}
                     sm={6}
-                    xs={6}
+                    xs={12}
                     onClick={() => n("/CYs_PanotourPro_Plugin/tutorial/page1")}
                 >
                     <Card>Panotour Pro 操作介面</Card>
@@ -26,7 +26,7 @@ const Cards = () => {
                     item
                     md={4}
                     sm={6}
-                    xs={6}
+                    xs={12}
                     onClick={() => n("/CYs_PanotourPro_Plugin/tutorial/page2")}
                 >
                     <Card>加入 Plugin</Card>
