@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<krpano>
+
+<!-- ************************ -->
+<!--         Messages         -->
+<!-- ************************ -->
+
+  <data name="zh_project_title"><![CDATA[New Project]]></data>
+
+
+
+  <data name="zh_pano10_title"><![CDATA[angra]]></data>
+
+
+
+
+
+
+  <data name="zh_CY_SidebarfileName"><![CDATA[index]]></data>
+  <data name="zh_CY_Sidebarspeed_in"><![CDATA[0.5]]></data>
+  <data name="zh_CY_Sidebarspeed_out"><![CDATA[0.5]]></data>
+  <data name="zh_CY_SidebaropenBtn_alpha"><![CDATA[1]]></data>
+  <data name="zh_CY_SidebarcloseBtn_alpha"><![CDATA[1]]></data>
+  <data name="zh_CY_Sidebarmenu_parents0"><![CDATA[type1]]></data>
+  <data name="zh_CY_Sidebarmenu_child_name0"><![CDATA[]]></data>
+  <data name="zh_CY_Sidebartext0"><![CDATA[]]></data>
+  <data name="zh_CY_Sidebarmenu_style0"><![CDATA[]]></data>
+  <data name="zh_CY_Sidebarmenu_parents1"><![CDATA[type1_1]]></data>
+  <data name="zh_CY_Sidebarmenu_child_name1"><![CDATA[type1]]></data>
+  <data name="zh_CY_Sidebartext1"><![CDATA[項目一]]></data>
+  <data name="zh_CY_Sidebarmenu_style1"><![CDATA[itemStyle]]></data>
+  <data name="zh_CY_Sidebarmenu_parents2"><![CDATA[type1_2]]></data>
+  <data name="zh_CY_Sidebarmenu_child_name2"><![CDATA[type1]]></data>
+  <data name="zh_CY_Sidebartext2"><![CDATA[項目二]]></data>
+  <data name="zh_CY_Sidebarmenu_style2"><![CDATA[itemStyle]]></data>
+  <data name="zh_CY_Sidebarmenu_parents3"><![CDATA[type2]]></data>
+  <data name="zh_CY_Sidebarmenu_child_name3"><![CDATA[]]></data>
+  <data name="zh_CY_Sidebartext3"><![CDATA[]]></data>
+  <data name="zh_CY_Sidebarmenu_style3"><![CDATA[]]></data>
+  <data name="zh_CY_Sidebarmenu_parents4"><![CDATA[type2_1]]></data>
+  <data name="zh_CY_Sidebarmenu_child_name4"><![CDATA[type2]]></data>
+  <data name="zh_CY_Sidebartext4"><![CDATA[]]></data>
+  <data name="zh_CY_Sidebarmenu_style4"><![CDATA[]]></data>
+  <data name="zh_CY_Sidebarmenu_parents5"><![CDATA[type2_2]]></data>
+  <data name="zh_CY_Sidebarmenu_child_name5"><![CDATA[type2]]></data>
+  <data name="zh_CY_Sidebartext5"><![CDATA[]]></data>
+  <data name="zh_CY_Sidebarmenu_style5"><![CDATA[]]></data>
+  <data name="zh_CY_Sidebarmenu_parents6"><![CDATA[type2_3]]></data>
+  <data name="zh_CY_Sidebarmenu_child_name6"><![CDATA[type2]]></data>
+  <data name="zh_CY_Sidebartext6"><![CDATA[]]></data>
+  <data name="zh_CY_Sidebarmenu_style6"><![CDATA[]]></data>
+  <data name="zh_CY_Sidebarbutton_name0"><![CDATA[btn_1]]></data>
+  <data name="zh_CY_Sidebarbutton_name1"><![CDATA[btn_2]]></data>
+  <data name="zh_CY_Sidebarbutton_name2"><![CDATA[btn_3]]></data>
+  <data name="zh_CY_SidebarcustomName0"><![CDATA[itemStyle]]></data>
+
+
+  <data name="zh_vr_setup_hmd0"><![CDATA[SELECT YOUR HMD]]></data>
+  <data name="zh_vr_setup_advanced"><![CDATA[ADVANCED SETTINGS]]></data>
+  <data name="zh_vr_setup_title"><![CDATA[WEB VR SETTINGS]]></data>
+  <data name="zh_vr_setup_dvn1"><![CDATA[Device:]]></data>
+  <data name="zh_vr_setup_siz1"><![CDATA[Screen size:]]></data>
+  <data name="zh_vr_setup_ipd1"><![CDATA[IPD:]]></data>
+  <data name="zh_vr_setup_hmd1"><![CDATA[HMD:]]></data>
+  <data name="zh_vr_setup_hmd3"><![CDATA[Customize]]></data>
+  <data name="zh_vr_setup_cal"><![CDATA[Calibrate gyroscope]]></data>
+  <data name="zh_vr_setup_sav"><![CDATA[SAVE]]></data>
+  <data name="zh_vr_setup_rst"><![CDATA[RESET]]></data>
+  <data name="zh_vr_setup_simple"><![CDATA[SIMPLE]]></data>
+  <data name="zh_vr_setup_cls"><![CDATA[CLOSE]]></data>
+  <data name="zh_vr_setup_m31"><![CDATA[HMD SETTINGS]]></data>
+  <data name="zh_vr_setup_fov1"><![CDATA[FOV:]]></data>
+  <data name="zh_vr_setup_dst1"><![CDATA[Distortion:]]></data>
+  <data name="zh_vr_setup_d2tx"><![CDATA[Distortion 2:]]></data>
+  <data name="zh_vr_setup_vig1"><![CDATA[Vignette:]]></data>
+  <data name="zh_vr_setup_cac1"><![CDATA[Chromatic aberration:]]></data>
+  <data name="zh_vr_setup_olp1"><![CDATA[Overlap:]]></data>
+  <data name="zh_vr_setup_m35"><![CDATA[RETURN]]></data>
+  <data name="zh_vr_setup_cb1"><![CDATA[GYROSCOPE]]></data>
+  <data name="zh_vr_setup_cb2"><![CDATA[Place the device on a flat and[br]stable surface and tab CALIBRATE[br]to correct a gyroscope drifting.]]></data>
+  <data name="zh_vr_setup_cb3"><![CDATA[CALIBRATE]]></data>
+  <data name="zh_vr_setup_cb4"><![CDATA[RESET]]></data>
+  <data name="zh_vr_setup_cb5"><![CDATA[RETURN]]></data>
+  <data name="zh_vr_setup_cb6"><![CDATA[Calibrating...]]></data>
+  <data name="zh_vr_setup_cb7"><![CDATA[Successful calibration]]></data>
+  <data name="zh_vr_setup_cb8"><![CDATA[Calibration failed]]></data>
+  <data name="zh_vr_setup_unavailable"><![CDATA[VR mode[br]is unavailable on your device]]></data>
+
+
+
+
+
+
+</krpano>

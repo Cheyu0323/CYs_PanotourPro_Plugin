@@ -1,0 +1,702 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<krpano version="1.19-pr16">
+ 
+    <!-- ********** -->
+    <!-- Core -->
+    <!-- id : CY_Core -->
+    <!-- ********** --> 
+    <action name="set_class" type="Javascript">
+        caller.sprite.className = args[1];
+    </action>
+    <action name="set_id" type="Javascript">
+        caller.sprite.id = args[1];
+    </action>
+    <action name="add_html_code" type="Javascript">
+        <![CDATA[
+            var div = document.createElement("div");
+            // basic styles to fit into the layer size and allow scrolling:
+            div.className= args[2];
+            // hacks for browsed-based mouse-wheel and touch-scrolling support:
+            div.addEventListener("mousewheel", function(event){ event.stopPropagation(); }, true);
+            div.addEventListener("DOMMouseScroll", function(event){ event.stopPropagation(); }, true);
+            div.addEventListener("touchstart", function(event){ if(krpano.device.ios && window.innerHeight == krpano.display.htmltarget.offsetHeight){ /* avoid the iOS 'overscrolling' for fullpage viewers */ var bs = document.body.parentNode.style; bs.position="fixed"; bs.top=0; bs.left=0; bs.right=0; bs.bottom=0; } krpano.control.preventTouchEvents = false; event.stopPropagation(); }, true);
+            div.addEventListener("touchend", function(event){ krpano.control.preventTouchEvents = true; event.stopPropagation(); }, true);
+            div.addEventListener("gesturestart", function(event){ event.preventDefault(); }, true);
+            // add some html code:
+            div.innerHTML = args[1];
+            // add the div to the layer element:
+            caller.sprite.appendChild(div);
+        ]]>
+    </action> 
+    <!-- ********** -->
+    <!-- Sidebar -->
+    <!-- id : CY_Sidebar -->
+    <!-- ********** --> 
+    <events name="CY_Sidebar_events_default" 
+        keep="true"
+        onTourStart="CY_Sidebar_init"
+        />
+    <events name="CY_Sidebar_events"
+        keep="true"
+        devices="desktop"
+        onloadcomplete="CY_Sidebar_callingOnce"
+        onmousedown="CY_Sidebar_close();"
+        />
+    <events name="CY_Sidebar_events"
+        keep="true"
+        devices="tablet"
+        onloadcomplete="CY_Sidebar_callingOnce"
+        onmousedown="CY_Sidebar_close();"
+        />
+    <events name="CY_Sidebar_events"
+        keep="true"
+        devices="mobile"
+        onloadcomplete="CY_Sidebar_callingOnce"
+        onmousedown="CY_Sidebar_close();"
+        />
+    <action name="CY_Sidebar_callingOnce">
+        if(CY_Sidebar_firstTime === '1',
+            CY_Sidebar_waitingForCountHeight();
+            CY_Sidebar_menu();
+        );
+    </action>
+    <action name="CY_Sidebar_init">
+        def(CY_Sidebar_firstTime, string, 1);
+        def(CY_Sidebar_isLoad, boolean, false);
+        CY_Sidebar_addFile();
+        CY_Sidebar_createStyle();
+        CY_Sidebar_createScript();
+    </action>
+    <action name="CY_Sidebar_addFile" type="Javascript">
+        <![CDATA[
+            $(document).ready(function(){
+                var CY_Sidebarstyle = document.createElement("link");
+                CY_Sidebarstyle.type = "text/css";
+                CY_Sidebarstyle.rel = "stylesheet";
+                CY_Sidebarstyle.href  = "indexdata/graphics/cy_sidebar/style/sidebar.css";
+                $("head").append(CY_Sidebarstyle);
+
+                var CY_Sidebarscript = document.createElement("script");
+                CY_Sidebarscript.type = "text/javascript";
+                CY_Sidebarscript.src = "indexdata/graphics/cy_sidebar/js/sidebar.js";
+                $("head").append(CY_Sidebarscript);
+            });
+        ]]>
+    </action>
+    <action name="CY_Sidebar_createStyle" type="Javascript">
+        var style = document.createElement("style");
+        style.type = "text/css"
+        style.innerHTML = `
+        #CY_Sidebar_outputMenu{
+            height: 100%;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .CY_Sidebar_scrollbarStyle{
+            width: 100%;
+            height: 100%;
+            overflow: hidden auto;
+            box-sizing: border-box;
+            padding: 0px 0px 0px 0px;
+            user-select: text;
+        }
+        .CY_Sidebar_scrollbarStyle::-webkit-scrollbar {
+            width: 5px !important;
+        }
+        .CY_Sidebar_scrollbarStyle::-webkit-scrollbar-track {
+            -webkit-border-radius: 5px !important;
+            -ms-border-radius: 5px !important;
+            border-radius: 5px !important;
+        }
+        .CY_Sidebar_scrollbarStyle::-webkit-scrollbar-thumb {
+            -webkit-border-radius: 5px !important;
+            border-radius: 5px !important;
+            background: #030303 !important;
+        }
+        .CY_Sidebar_buttonsStyle{
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+        }
+        #CY_Sidebar_outputButtons{
+            overflow: hidden;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .desktop{
+            width: 30px;
+            height: 30px;
+            margin: 3px;
+        }
+        .tablet{
+            width: 30px;
+            height: 30px;
+            margin: 3px;
+        }
+        .mobile{
+            width: 30px;
+            height: 30px;
+            margin: 3px;
+        }
+        .itemStyle_default{
+            box-sizing: border-box;
+            background-color: #aeaeae;
+            color: #000000;
+            font-family: 微軟正黑體;
+            font-weight: bold;
+            font-size: 14px;
+            padding: 5px 20px 5px 5px;
+        }
+        .itemStyle_default:hover{
+            box-sizing: border-box;
+            background-color: #7a7a7a;
+            color: #000000;
+            font-family: 微軟正黑體;
+            font-weight: bold;
+            font-size: 14px;
+            padding: 5px 20px 5px 5px;
+        }    
+        `
+        $("head").append(style);
+    </action>
+    <action name="CY_Sidebar_waitingForCountHeight">
+        if(CY_Sidebar_isLoad,
+            CY_Sidebar_countHeight();
+            CY_Sidebar_onloadComplete();
+        );
+        if(CY_Sidebar_firstTime === '1',
+            delayedcall(0.2, CY_Sidebar_waitingForCountHeight());
+        );
+    </action>
+    <action name="CY_Sidebar_onloadComplete" devices="desktop">
+        CY_Sidebar_buttons();
+        CY_Sidebar_open();
+        set(CY_Sidebar_firstTime, 0);
+    </action>
+    <action name="CY_Sidebar_onloadComplete" devices="tablet">
+        CY_Sidebar_buttons();
+        set(events[CY_Sidebar_events].onremovepano, CY_Sidebar_close());
+        set(CY_Sidebar_firstTime, 0);
+    </action>
+    <action name="CY_Sidebar_onloadComplete" devices="mobile">
+        CY_Sidebar_buttons();
+        set(events[CY_Sidebar_events].onremovepano, CY_Sidebar_close());
+        set(CY_Sidebar_firstTime, 0);
+    </action>
+    <action name="CY_Sidebar_countHeight">
+        set(layer[CY_Sidebar_block02].y, get(layer[CY_Sidebar_block01].pixelheight));
+        set(layer[CY_Sidebar_block03].y, calc(layer[CY_Sidebar_block01].pixelheight + layer[CY_Sidebar_block02].pixelheight));
+        set(layer[CY_Sidebar_block02].height, calc(layer[CY_Sidebar_layer].pixelheight - layer[CY_Sidebar_block01].pixelheight - layer[CY_Sidebar_block03].pixelheight ));
+        set(layer[CY_Sidebar_block02].y, get(layer[CY_Sidebar_block01].height));
+        set(layer[CY_Sidebar_block03].y, calc(layer[CY_Sidebar_block01].pixelheight + layer[CY_Sidebar_block02].height));
+    </action>
+    <layer name="CY_Sidebar_layer" 
+        type="container"
+        devices="desktop"
+        keep="true"
+        align="left"
+        x="-150"
+        y="0px"
+        zorder="98"
+        visible="true"
+        height="100%"
+        width="150"
+        background="true"
+        bgcapture="true"
+        handcursor="false"
+        bgcolor="0x030303"
+        bgalpha="0.7000076295109483"
+        onloaded="set_class(get(name));"
+        />
+    <layer name="CY_Sidebar_layer"
+        type="container"
+        devices="tablet"
+        keep="true"
+        align="left"
+        x="-150"
+        y="0px"
+        zorder="98"
+        visible="true"
+        height="100%"
+        width="150"
+        background="true"
+        bgcapture="true"
+        handcursor="false"
+        bgcolor="0x030303"
+        bgalpha="0.7000076295109483"
+        onloaded="set_class(get(name));"
+        />
+    <layer name="CY_Sidebar_layer"
+        type="container"
+        devices="mobile"
+        keep="true"
+        align="left"
+        x="-30%"
+        y="0px"
+        zorder="98"
+        visible="true"
+        height="100%"
+        width="30%"
+        background="true"
+        bgcapture="true"
+        handcursor="false"
+        bgcolor="0x030303"
+        bgalpha="0.7000076295109483"
+        onloaded="set_class(get(name));"
+        />
+    <data name="CY_Sidebar_createMenuContent"><![CDATA[<div id="CY_Sidebar_outputMenu">]]></data>
+    <data name="CY_Sidebar_createButtonsContent"><![CDATA[<div id="CY_Sidebar_outputButtons">]]></data>
+    <layer name="CY_Sidebar_block01" 
+        type="container"
+        keep="true"
+        blockType="logo"
+        parent="CY_Sidebar_layer"
+        devices="desktop|tablet|mobile"
+        align="top"
+        x="0px"
+        y="0px"
+        width="100%"
+        height="prop"
+        visible="true"
+        background="true" 
+        bgcapture="true"
+        handcursor="false"
+        onloaded="set_class(get(name));"
+        />
+    <layer name="CY_Sidebar_block02" 
+        type="container"
+        keep="true"
+        blockType="menu"
+        parent="CY_Sidebar_layer"
+        devices="desktop|tablet|mobile"
+        align="top"
+        x="0px"
+        y="0px"
+        width="100%"
+        height="100%"
+        visible="true"
+        background="true" 
+        bgcapture="true"
+        handcursor="false"
+        onloaded="set_class(get(name));add_html_code(get(data[CY_Sidebar_createMenuContent].content), 'CY_Sidebar_scrollbarStyle sidebar');"
+        />
+    <layer name="CY_Sidebar_block03" 
+        type="container"
+        keep="true"
+        blockType="button"
+        parent="CY_Sidebar_layer"
+        devices="desktop|tablet|mobile"
+        align="top"
+        x="0px"
+        y="0px"
+        width="100%"
+        height="100"
+        visible="true"
+        background="true" 
+        bgcapture="true"
+        handcursor="false"
+        bgcolor="0x030303"
+        bgalpha="0.90000762951094837"
+        onloaded="set_class(get(name));add_html_code(get(data[CY_Sidebar_createButtonsContent].content), 'CY_Sidebar_buttonsStyle sidebar');"
+        />
+    <action name="CY_Sidebar_setHieght">
+        set(layer[%2].height, %1);
+    </action>
+    <action name="CY_Sidebar_setLogoHeight" type="Javascript" autorun="preinit">
+        krpano.actions.setlogoheight = function(block) {
+            let tolower = ".CY_Sidebar_logo".toLowerCase();
+            krpano.set("CY_Sidebar_isLoad", true);
+            krpano.call("CY_Sidebar_setHieght(" + document.querySelector(tolower).style.height + ", "+ block +")");
+            krpano.call("set(layer[CY_Sidebar_logo_hover].parent, layer[CY_Sidebar_block01]);");
+            krpano.call("set(layer[CY_Sidebar_logo_hover].height, get(layer[CY_Sidebar_logo_hover].height));");
+        };
+    </action>
+    <layer name="CY_Sidebar_logo"
+        keep="true"
+        type="image"
+        x="0px"
+        y="0px"
+        visible="true"
+        width="100%"
+        height="prop"
+        url="%FIRSTXML%/graphics/cy_sidebar/logo_1.png"
+        enabled="false"
+        onloaded="set_class(get(name));
+        if(layer[CY_Sidebar_block01].blockType === 'logo',
+            set(layer[CY_Sidebar_logo].parent, layer[CY_Sidebar_block01]);
+            if(layer[CY_Sidebar_block01].height === 'prop',
+                delayedcall(0.1,
+                    setlogoheight('CY_Sidebar_block01');
+                );
+                ,
+                 set(layer[CY_Sidebar_logo].height, get(layer[CY_Sidebar_block01].height)); 
+            );
+        );
+        if(layer[CY_Sidebar_block02].blockType === 'logo',
+            set(layer[CY_Sidebar_logo].parent, layer[CY_Sidebar_block02]);
+            if(layer[CY_Sidebar_block02].height === 'prop',
+                delayedcall(0.1,
+                    setlogoheight('CY_Sidebar_block02');
+                );
+                ,
+                 set(layer[CY_Sidebar_logo].height, get(layer[CY_Sidebar_block02].height)); 
+            );
+        );
+        if(layer[CY_Sidebar_block03].blockType === 'logo',
+            set(layer[CY_Sidebar_logo].parent, layer[CY_Sidebar_block03]);
+            if(layer[CY_Sidebar_block03].height === 'prop',
+                delayedcall(0.1,
+                    setlogoheight('CY_Sidebar_block03');
+                );
+                ,
+                 set(layer[CY_Sidebar_logo].height, get(layer[CY_Sidebar_block03].height)); 
+            );
+        );"
+        />
+    <action name="CY_Sidebar_createScript" type="Javascript">
+        <![CDATA[
+            var newscript = document.createElement('script');
+            newscript.type = 'text/javascript';
+            newscript.innerHTML = `
+                let CY_SidebarlastClick = ''
+                callingkrpano = document.getElementById("krpanoSWFObject");
+                function callKrpano(action){
+                    callingkrpano.call(action);
+                }
+                function toggleChild(id, clickid){
+                    sidebarClearAllClickActive();
+                    sidebarHideChildAll();
+                    if(CY_SidebarlastClick != '' && CY_SidebarlastClick == id){
+                        sidebarHideChild(id);
+                        clickid != undefined && (sidebarHideClick(clickid));
+                        CY_SidebarlastClick = ''
+                        return ;
+                    }
+                    clickid != undefined && (sidebarToggleClick(clickid));
+                    document.querySelectorAll('.' + id).forEach(element => {
+                        element.classList.toggle('isHide');
+                    });
+                    CY_SidebarlastClick = id
+                }
+            `
+            $("head").append(newscript);
+        ]]>
+    </action>
+    <action name="CY_Sidebar_menu" type="Javascript">
+        <![CDATA[
+            $(document).ready(function(){
+                let result = document.querySelector("#CY_Sidebar_outputMenu")
+                if(result != null){
+                    let items_type1 = document.createElement('div');
+                    items_type1.id="type1"; 
+                    items_type1.innerHTML = `
+                    <div class="item" onclick="toggleChild('type1', 'type1_click');">
+                        <div class='front front-anim' id='type1_front'>
+                            <img src='./indexdata/graphics/cy_sidebar/type01.png' />
+                        </div>
+                        <div class='back back-anim' id='type1_back'>
+                            <img src='./indexdata/graphics/cy_sidebar/type01_hover.png' />
+                        </div>
+                        <div class='click' id='type1_click'>
+                            <img src='./indexdata/graphics/cy_sidebar/type01_click.png' />
+                        </div>
+                    </div> 
+                    `
+                    result.appendChild(items_type1)
+                    let items_type1_1 = document.createElement('div');
+                    items_type1_1.id="type1_1";
+                    items_type1_1.innerHTML = `<div class="item itemStyle_default child isHide type1" onclick="">` + sidebarHtmldecode("項目一") + "</div>"
+                    result.appendChild(items_type1_1)
+                    let items_type1_2 = document.createElement('div');
+                    items_type1_2.id="type1_2";
+                    items_type1_2.innerHTML = `<div class="item itemStyle_default child isHide type1" onclick="">` + sidebarHtmldecode("項目二") + "</div>"
+                    result.appendChild(items_type1_2)
+                    let items_type2 = document.createElement('div');
+                    items_type2.id="type2"; 
+                    items_type2.innerHTML = `
+                    <div class="item" onclick="toggleChild('type2', 'type2_click');">
+                        <div class='front front-anim' id='type2_front'>
+                            <img src='./indexdata/graphics/cy_sidebar/type02.png' />
+                        </div>
+                        <div class='back back-anim' id='type2_back'>
+                            <img src='./indexdata/graphics/cy_sidebar/type02_hover.png' />
+                        </div>
+                        <div class='click' id='type2_click'>
+                            <img src='./indexdata/graphics/cy_sidebar/type02_click.png' />
+                        </div>
+                    </div> 
+                    `
+                    result.appendChild(items_type2)
+                    let items_type2_1 = document.createElement('div');
+                    items_type2_1.id="type2_1"; 
+                    items_type2_1.innerHTML = `
+                    <div class="item child isHide type2" onclick="">
+                        <div class='front' id='type2_1_front'>
+                            <img src='./indexdata/graphics/cy_sidebar/item01.png' />
+                        </div>
+                    </div> 
+                    `
+                    result.appendChild(items_type2_1)
+                    let items_type2_2 = document.createElement('div');
+                    items_type2_2.id="type2_2"; 
+                    items_type2_2.innerHTML = `
+                    <div class="item child isHide type2" onclick="">
+                        <div class='front' id='type2_2_front'>
+                            <img src='./indexdata/graphics/cy_sidebar/item02.png' />
+                        </div>
+                    </div> 
+                    `
+                    result.appendChild(items_type2_2)
+                    let items_type2_3 = document.createElement('div');
+                    items_type2_3.id="type2_3"; 
+                    items_type2_3.innerHTML = `
+                    <div class="item child isHide type2" onclick="">
+                        <div class='front' id='type2_3_front'>
+                            <img src='./indexdata/graphics/cy_sidebar/item03.png' />
+                        </div>
+                    </div> 
+                    `
+                    result.appendChild(items_type2_3)
+                }
+            })
+        ]]>
+    </action>
+    <action name="CY_Sidebar_buttons" type="Javascript" devices="desktop">
+        <![CDATA[
+            $(document).ready(function(){
+                let result = document.querySelector('#CY_Sidebar_outputButtons');
+                if(result != null){
+                    let buttons_btn_1 = document.createElement('div')
+                    buttons_btn_1.id="btn_1"
+                    buttons_btn_1.className="desktop "
+                    buttons_btn_1.onclick=""
+                    buttons_btn_1.innerHTML = `
+                    <div class="item">
+                        <div class='front' id='btn_1_front'>
+                            <img src="./indexdata/graphics/cy_sidebar/facebook.png" />
+                        </div>
+                    </div>
+                    `
+                    result.appendChild(buttons_btn_1)
+                    let buttons_btn_2 = document.createElement('div')
+                    buttons_btn_2.id="btn_2"
+                    buttons_btn_2.className="desktop "
+                    buttons_btn_2.onclick=""
+                    buttons_btn_2.innerHTML = `
+                    <div class="item">
+                        <div class='front' id='btn_2_front'>
+                            <img src="./indexdata/graphics/cy_sidebar/map.png" />
+                        </div>
+                    </div>
+                    `
+                    result.appendChild(buttons_btn_2)
+                    let buttons_btn_3 = document.createElement('div')
+                    buttons_btn_3.id="btn_3"
+                    buttons_btn_3.className="desktop "
+                    buttons_btn_3.onclick=""
+                    buttons_btn_3.innerHTML = `
+                    <div class="item">
+                        <div class='front' id='btn_3_front'>
+                            <img src="./indexdata/graphics/cy_sidebar/share.png" />
+                        </div>
+                    </div>
+                    `
+                    result.appendChild(buttons_btn_3)
+                }
+            });
+        ]]>
+    </action>
+    <action name="CY_Sidebar_buttons" type="Javascript" devices="tablet">
+        <![CDATA[
+            $(document).ready(function(){
+                let result = document.querySelector('#CY_Sidebar_outputButtons');
+                if(result != null){
+                    let buttons_btn_1 = document.createElement('div')
+                    buttons_btn_1.id="btn_1"
+                    buttons_btn_1.innerHTML = `
+                    <div class="tablet " onclick="" >
+                        <div class="item">
+                            <div class='front' id='btn_1_front'>
+                                <img src="./indexdata/graphics/cy_sidebar/facebook.png" />
+                            </div>
+                        </div>
+                    </div>
+                    `
+                    result.appendChild(buttons_btn_1)
+                    let buttons_btn_2 = document.createElement('div')
+                    buttons_btn_2.id="btn_2"
+                    buttons_btn_2.innerHTML = `
+                    <div class="tablet " onclick="" >
+                        <div class="item">
+                            <div class='front' id='btn_2_front'>
+                                <img src="./indexdata/graphics/cy_sidebar/map.png" />
+                            </div>
+                        </div>
+                    </div>
+                    `
+                    result.appendChild(buttons_btn_2)
+                    let buttons_btn_3 = document.createElement('div')
+                    buttons_btn_3.id="btn_3"
+                    buttons_btn_3.innerHTML = `
+                    <div class="tablet " onclick="" >
+                        <div class="item">
+                            <div class='front' id='btn_3_front'>
+                                <img src="./indexdata/graphics/cy_sidebar/share.png" />
+                            </div>
+                        </div>
+                    </div>
+                    `
+                    result.appendChild(buttons_btn_3)
+                }
+            });
+        ]]>
+    </action>
+    <action name="CY_Sidebar_buttons" type="Javascript" devices="mobile">
+        <![CDATA[
+            $(document).ready(function(){
+                let result = document.querySelector('#CY_Sidebar_outputButtons');
+                if(result != null){
+                    let buttons_btn_1 = document.createElement('div')
+                    buttons_btn_1.id="btn_1"
+                    buttons_btn_1.innerHTML = `
+                    <div class="mobile " onclick="" >
+                        <div class="item">
+                            <div class='front' id='btn_1_front'>
+                                <img src="./indexdata/graphics/cy_sidebar/facebook.png" />
+                            </div>
+                        </div>
+                    </div>
+                    `
+                    result.appendChild(buttons_btn_1)
+                    let buttons_btn_2 = document.createElement('div')
+                    buttons_btn_2.id="btn_2"
+                    buttons_btn_2.innerHTML = `
+                    <div class="mobile " onclick="" >
+                        <div class="item">
+                            <div class='front' id='btn_2_front'>
+                                <img src="./indexdata/graphics/cy_sidebar/map.png" />
+                            </div>
+                        </div>
+                    </div>
+                    `
+                    result.appendChild(buttons_btn_2)
+                    let buttons_btn_3 = document.createElement('div')
+                    buttons_btn_3.id="btn_3"
+                    buttons_btn_3.innerHTML = `
+                    <div class="mobile " onclick="" >
+                        <div class="item">
+                            <div class='front' id='btn_3_front'>
+                                <img src="./indexdata/graphics/cy_sidebar/share.png" />
+                            </div>
+                        </div>
+                    </div>
+                    `
+                    result.appendChild(buttons_btn_3)
+                }
+            });
+        ]]>
+    </action>
+    <layer name="CY_Sidebar_layer_menuOpen"
+        keep="true"
+        parent="CY_Sidebar_layer"  
+        align="topright" 
+        x="-50"
+        y="10"
+        visible="false"
+        alpha="1"
+        url="%FIRSTXML%/graphics/cy_sidebar/open.png"
+        onloaded="if(device.desktop,set(layer[CY_Sidebar_layer_menuOpen].visible, true););
+            if(device.tablet, set(layer[CY_Sidebar_layer_menuOpen].visible, true););
+            if(device.mobile, set(layer[CY_Sidebar_layer_menuOpen].visible, true););"
+        onclick="CY_Sidebar_open();"
+        />
+    <layer name="CY_Sidebar_layer_menuClose"
+        keep="true"
+        parent="CY_Sidebar_layer" 
+        align="topright"   
+        x="-50"
+        y="10"
+        visible="false"
+        alpha="1"
+        url="%FIRSTXML%/graphics/cy_sidebar/close.png"
+        onclick="CY_Sidebar_close();"
+        />
+    <action name="CY_Sidebar_open">
+        tween(layer[CY_Sidebar_layer].x, 0, 0.5, easeinoutquad);
+        CY_Sidebar_close_UI();
+    </action>
+    <action name="CY_Sidebar_close">
+        if(device.mobile, def(CY_Sidebar_layerX, string, -30%););
+        if(device.tablet, def(CY_Sidebar_layerX, string, -150););
+        if(device.desktop, def(CY_Sidebar_layerX, string, -150););
+        tween(layer[CY_Sidebar_layer].x, get(CY_Sidebar_layerX), 0.5, easeinoutquad);
+        CY_Sidebar_open_UI();
+    </action>
+    <action name="CY_Sidebar_toggle_UI">
+        if(layer[CY_Sidebar_layer_menuOpen].visible == 'true',
+            CY_Sidebar_close_UI();
+            ,
+            CY_Sidebar_open_UI();
+        );
+    </action>
+    <action name="CY_Sidebar_open_UI">
+        set(layer[CY_Sidebar_layer_menuOpen].visible, true);
+        set(layer[CY_Sidebar_layer_menuOpen_hover].visible, false);
+        set(layer[CY_Sidebar_layer_menuOpen].enabled, true);
+        set(layer[CY_Sidebar_layer_menuOpen_hover].enabled, true);
+        set(layer[CY_Sidebar_layer_menuClose].visible, false);
+        set(layer[CY_Sidebar_layer_menuClose_hover].visible, false);
+        set(layer[CY_Sidebar_layer_menuClose].enabled, false);
+        set(layer[CY_Sidebar_layer_menuClose_hover].enabled, false);
+    </action>
+    <action name="CY_Sidebar_close_UI">
+        set(layer[CY_Sidebar_layer_menuOpen].visible, false);
+        set(layer[CY_Sidebar_layer_menuOpen_hover].visible, false);
+        set(layer[CY_Sidebar_layer_menuOpen].enabled, false);
+        set(layer[CY_Sidebar_layer_menuOpen_hover].enabled, false);
+        set(layer[CY_Sidebar_layer_menuClose].visible, true);
+        set(layer[CY_Sidebar_layer_menuClose_hover].visible, false);
+        set(layer[CY_Sidebar_layer_menuClose].enabled, true);
+        set(layer[CY_Sidebar_layer_menuClose_hover].enabled, true);
+    </action>
+    <action name="CY_Sidebar_unDisplay">
+        set(layer[CY_Sidebar_layer_menuOpen].visible, false);
+        set(layer[CY_Sidebar_layer_menuOpen_hover].visible, false);
+        set(layer[CY_Sidebar_layer_menuOpen].enabled, false);
+        set(layer[CY_Sidebar_layer_menuOpen_hover].enabled, false);
+        set(layer[CY_Sidebar_layer_menuOpen].width, 0);
+        set(layer[CY_Sidebar_layer_menuClose].visible, false);
+        set(layer[CY_Sidebar_layer_menuClose_hover].visible, false);
+        set(layer[CY_Sidebar_layer_menuClose].enabled, false);
+        set(layer[CY_Sidebar_layer_menuClose_hover].enabled, false);
+    </action>
+    <action name="CY_Sidebar_display">
+        set(layer[CY_Sidebar_layer_menuOpen].visible, true);
+        set(layer[CY_Sidebar_layer_menuOpen_hover].visible, false);
+        set(layer[CY_Sidebar_layer_menuOpen].enabled, true);
+        set(layer[CY_Sidebar_layer_menuOpen_hover].enabled, true);
+        set(layer[CY_Sidebar_layer_menuOpen].width, prop);
+        set(layer[CY_Sidebar_layer_menuClose].visible, false);
+        set(layer[CY_Sidebar_layer_menuClose_hover].visible, false);
+        set(layer[CY_Sidebar_layer_menuClose].enabled, false);
+        set(layer[CY_Sidebar_layer_menuClose_hover].enabled, false);
+    </action>
+    <action name="CY_Sidebar_toggleDisplay">
+        if(layer[CY_Sidebar_layer_menuOpen].width == 0,
+            CY_Sidebar_display();
+            ,
+            CY_Sidebar_unDisplay();
+        );
+    </action><action name="CY_Sidebar_toggle">
+        if(layer[CY_Sidebar_layer].x == 0,
+            CY_Sidebar_close();
+            ,
+            CY_Sidebar_open();
+        );
+    </action>
+
+</krpano>
