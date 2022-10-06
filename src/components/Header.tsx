@@ -1,4 +1,4 @@
-import { Stack, Typography } from "@mui/material";
+import { Stack, Typography, Box } from "@mui/material";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -12,10 +12,14 @@ const Header = () => {
     return (
         <Stack
             direction="row"
-            marginY="10px"
+            paddingY="10px"
             justifyContent="space-between"
             alignItems="center"
-            overflow="hidden"
+            position="sticky"
+            top="0"
+            sx={{
+                backgroundColor: "secondary.main",
+            }}
         >
             <Typography
                 variant="body1"
@@ -35,7 +39,7 @@ const Header = () => {
                 sx={{
                     display: { md: "block" },
                     position: { md: "relative", xs: "absolute" },
-                    top: { md: "0px", xs: "45px" },
+                    top: { md: "0px", xs: "43px" },
                     left: "0",
                     transition: ".3s",
                     maxHeight: menuClick ? "100px" : "0",
