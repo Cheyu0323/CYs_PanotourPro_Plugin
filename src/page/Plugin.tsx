@@ -50,8 +50,9 @@ const Plugin: React.FC = () => {
                 <Box>
                     <Stack
                         direction={{ xs: "column", md: "row" }}
-                        spacing={{ xs: 1, md: 5 }}
+                        spacing={{ xs: 0, md: 5 }}
                         alignItems="flex-start"
+                        paddingTop={{ xs: "10px", md: 0 }}
                     >
                         <Typography
                             color="common.white"
@@ -68,7 +69,7 @@ const Plugin: React.FC = () => {
                         >
                             {pluginData.fun?.map((item) => {
                                 return (
-                                    <Grid item xs={6} key={item.id}>
+                                    <Grid item sm={6} xs={12} key={item.id}>
                                         <Typography
                                             color="common.white"
                                             variant="body1"
@@ -191,6 +192,7 @@ const Plugin: React.FC = () => {
                                 fontWeight="900"
                                 letterSpacing="1.5px"
                                 paddingX="1%"
+                                textAlign="right"
                             >
                                 {pluginNextData.title}
                             </Typography>
